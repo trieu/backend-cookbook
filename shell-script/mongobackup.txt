@@ -1,0 +1,18 @@
+You need to update the parameters in above shell script as per your environment. Specify the name of database to be backed up, host name, port in MONGO_DATABASE, MONGO_HOST and MONGO_PORT parameters. To specify the backup directory, update the BACKUPS_DIR parameter. You need to update the database credentials in DBUSERNAME, DBPASSWORD and DBAUTHDB parameters if you are using one. Finally you need to specify the number of days you want to retain the backup file in DAYSTORETAINBACKUP parameter. Once you update all the parameters as per your environment, save the file as mongobackup.sh. After that you need to make the file executable by issuing following command:
+
+1
+chomd +x mongobackup.sh
+Now you need to create a cron job to execute this script automatically. Issue following command to create a cron job:
+
+1
+crontab -e
+Enter following:
+
+1
+2
+# MongoDB Backup
+00 00 * * * /path/to/script/mongobackup.sh
+Save the file by pressing Escand then wq + Enter (similar to vi editor). 
+This cron job will execute the backup script at 12 o’clock every night. 
+
+
